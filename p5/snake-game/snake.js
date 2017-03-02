@@ -56,9 +56,9 @@ function Snake() {
   this.show = function() {
     fill("#E0E0E0");
     for (var i = 0; i < this.tail.length; i++) {
-      ellipse(this.tail[i].x, this.tail[i].y, scl, scl);
+      rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }
-    ellipse(this.x, this.y, scl, scl);
+    rect(this.x, this.y, scl, scl);
 
   }
 }
