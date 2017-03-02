@@ -39,7 +39,7 @@ function draw() {
 
 
   fill("#FF8A80");
-  ellipse(food.x, food.y, scl, scl);
+  rect(food.x, food.y, scl, scl);
 }
 
 
