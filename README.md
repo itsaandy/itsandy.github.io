@@ -18,4 +18,4 @@
     
 3. [South Park Game](https://scratch.mit.edu/projects/163703719/)
     
-    A South Park game made with Scratch
+    A South Park game made with Scratch (REQUIRES FLASH SUPPORT)   
