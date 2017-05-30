@@ -4,11 +4,14 @@
 
 1. [Maze Generation using Depth First Search](https://adityapokharel.github.io/p5/maze-generator)
   
-    Utilising p5.js libraries and using the Depth First Search algorithm.
+    Implemented a visual maze generator using p5.js
+      BUGS:
+        - Left most column does not get filled.
+        - Cursor does not return to start cell, (0, 0)
     
 2. [Breakout Game](https://adityapokharel.github.io/p5/breakout)
 
-    Utilising p5.js libraries to recreate a classic Atari game
+    Classic Atari game recreated using p5.js
     
 3. [South Park Game](https://scratch.mit.edu/projects/163703719/)
     
