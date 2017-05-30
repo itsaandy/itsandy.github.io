@@ -5,6 +5,7 @@
 1. [Maze Generation using Depth First Search](https://adityapokharel.github.io/p5/maze-generator)
   
     Implemented a visual maze generator using p5.js
+    
       BUGS:
       
         - Left most column does not get filled.
