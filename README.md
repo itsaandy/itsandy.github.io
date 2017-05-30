@@ -9,3 +9,7 @@
 2. [Breakout Game](https://adityapokharel.github.io/p5/breakout)
 
     Utilising p5.js libraries to recreate a classic Atari game
+    
+3. [South Park Game](https://scratch.mit.edu/projects/113804015/)
+    
+    A South Park game made with Scratch
