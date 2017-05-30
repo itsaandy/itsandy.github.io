@@ -6,7 +6,9 @@
   
     Implemented a visual maze generator using p5.js
       BUGS:
+      
         - Left most column does not get filled.
+        
         - Cursor does not return to start cell, (0, 0)
     
 2. [Breakout Game](https://adityapokharel.github.io/p5/breakout)
