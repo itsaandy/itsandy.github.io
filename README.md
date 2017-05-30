@@ -8,7 +8,7 @@
     
       BUGS:
       
-        - Left most column does not get filled.
+        - Left most column does not get completely filled.
         
         - Cursor does not return to start cell, (0, 0)
     
