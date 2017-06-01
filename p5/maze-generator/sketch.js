@@ -15,6 +15,7 @@ function setup(){
 function draw(){
     grid.display();
     stack.push(grid.getXY());
+
     //console.log(stack.length);
 
     num = Math.floor(Math.random() * 4);
@@ -43,7 +44,7 @@ function draw(){
         grid.setXY(temp);
     }
 
-
+    //When stack is empty
     if(stack.length  < 1){
         //console.log(stack.length);
         grid.display();

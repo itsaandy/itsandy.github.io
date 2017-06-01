@@ -119,25 +119,20 @@ function Grid(size){
     };
 
     //checks if the neighboring cells are visited
-    //return: true = one of the neighbors aren't visited.
+    //return: true = one of the neighbors isn't visited.
     this.checkNeighbors = function(){
         var neighbors = []; //top right bottom left
-        console.log("checking neighbors");
 
         if((current.getY() > 0) && (this.cell[current.getX()][current.getY() - 1].isVisited() === false)){ //top
-            console.log("Up");
             return true;
         }
         else if((current.getX() + 1 < this.SIZE) && (this.cell[current.getX() + 1][current.getY()].isVisited() === false)){ //right
-            console.log("Right");
             return true;
         }
         else if((current.getY() + 1 < this.SIZE) && (this.cell[current.getX()][current.getY() + 1].isVisited() === false)){ //bottom
-            console.log("bottom");
             return true;
         }
-        else if((current.getX() - 1 > 0) && (this.cell[current.getX() - 1][current.getY()].isVisited() === false)){ //left
-            console.log("left");
+        else if((current.getX() > 0) && (this.cell[current.getX() - 1][current.getY()].isVisited() === false)){ //left
             return true;
         }
         else{
@@ -150,13 +145,13 @@ function Grid(size){
         return (this.cell[current.getX()][current.getY()-1].isVisited());
     };
     this.bottomVisited = function(){
-        return this.cell[current.getX()][current.getY()].isVisited();
+        return this.cell[current.getX()][current.getY()+1].isVisited();
     };
     this.leftVisited = function(){
-        return this.cell[current.getX()][current.getY()].isVisited();
+        return this.cell[current.getX()-1][current.getY()].isVisited();
     };
     this.rightVisited = function(){
-        return this.cell[current.getX()][current.getY()].isVisited();
+        return this.cell[current.getX()+1][current.getY()].isVisited();
     };
 
 }

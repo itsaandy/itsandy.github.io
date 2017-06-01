@@ -4,13 +4,7 @@
 
 1. [Maze Generation using Depth First Search](https://adityapokharel.github.io/p5/maze-generator)
   
-    Implemented a visual maze generator using p5.js
-    
-      BUGS:
-      
-        - Left most column does not get completely filled.
-        
-        - Cursor does not return to start cell, (0, 0)
+    Implemented a visual DFS maze generator using p5.js
     
 2. [Breakout Game](https://adityapokharel.github.io/p5/breakout)
 
