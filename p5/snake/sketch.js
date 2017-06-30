@@ -6,8 +6,10 @@ var food;
 function setup(){
     createCanvas(CANVAS_SIZE, CANVAS_SIZE);
     background("#212121");
+
     snake = new Snake();
     food = new Food(CANVAS_SIZE);
+
     frameRate(10);
 }
 
@@ -22,43 +24,58 @@ function eaten(){
     return is_within_bounds;
 }
 
+
 function draw(){
     background("#212121");
     snake.display();
     food.display();
 
+    //increments length if the snake eats food. 
     if(eaten()){
         food.change_location();
-        snake.length++;
-        snake.body_length++;
-        snake.body[snake.body_length - 1] = new TailSquare();
-        if(snake.length > 2){
+        snake.length++; //increments total length
+        snake.body_length++; //increments the body length --- total length - 1 (1 being the head)
+        snake.body[snake.body_length - 1] = new TailSquare(); //create a new square to add on to the snake.
+        
+        //sets new square at the end of the trail.
+        if(snake.body_length > 1){ //Since (i - 2)th element of the body array needs to be accessed.
             snake.body[snake.body_length - 1].set_xy(snake.body[snake.body_length - 2].x, snake.body[snake.body_length - 2].y);
         }
-        else{
-            snake.body[snake.length-2].set_xy(snake.x, snake.y);
+        else{ // this means there is only one body element (the one that was created before the if statement)
+            snake.body[snake.body_length-1].set_xy(snake.x, snake.y);
         }
         console.log(snake.length);
     }
 
+    //if the snake crosses the screen's edge, KILL THE SNAKE 😡
     if(snake.touched_screen_edge(CANVAS_SIZE)){
         snake.die();
         snake.x_speed = 0;
         snake.y_speed = 0;
     }
 
+    //if the snake touches its own body.
     if(snake.touched_body()){
         snake.die();
     }
 
-    //TODO: Die when snake touches body.
 }
 
+//for debugging purposes (also for some sly gameplay hacking 😈)
 function mousePressed(){
-    alert("PAUSE");
+    snake.length++;
+    snake.body_length++;
+    snake.body[snake.body_length - 1] = new TailSquare();
+    if(snake.length > 2){
+        snake.body[snake.body_length - 1].set_xy(snake.body[snake.body_length - 2].x, snake.body[snake.body_length - 2].y);
+    }
+    else{
+        snake.body[snake.length-2].set_xy(snake.x, snake.y);
+    }
 }
 
 
+//arrow keys input handler. 👈🏽👉🏽👆🏽👇🏽
 function keyPressed(){
     if(keyCode === UP_ARROW)
         snake.move_up();

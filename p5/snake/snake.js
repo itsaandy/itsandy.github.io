@@ -1,16 +1,18 @@
 var SPEED = 20;
 var SQUARE_SIZE = 20;
 
-
+//Tail square class. To add squares to the snake.
 function TailSquare(){
     this.x = 0;
     this.y = 0;
 
+    //Displays the snake.
     this.display = function(){
         fill("#E0E0E0");
         rect(this.x, this.y, SQUARE_SIZE, SQUARE_SIZE);
     }
 
+    //for easier setting of x and y coordinates.
     this.set_xy = function(x, y){
         this.x = x;
         this.y = y;
@@ -34,6 +36,7 @@ function Snake(){
 
     this.display = function(){
         //TODO: display the tails.
+
         this.show_head();
 
         var tempx = this.x;
@@ -42,16 +45,14 @@ function Snake(){
         this.x += this.x_speed;
         this.y += this.y_speed;
 
-        for(var i = this.body_length - 1; i > 0; i--){
-            this.body[i].display();
-            this.body[i].set_xy(this.body[i-1].x, this.body[i-1].y);
-        }
-
-        
-
         if(this.length > 1){
             this.body[0].display();
             this.body[0].set_xy(tempx, tempy);
+        }
+        
+        for(var i = this.body_length - 1; i > 0; i--){
+            this.body[i].display();
+            this.body[i].set_xy(this.body[i-1].x, this.body[i-1].y);
         }
 
         // this.x += this.x_speed;
@@ -67,9 +68,9 @@ function Snake(){
 
     this.touched_body = function(){
         for(var i = 2; i < this.body_length; i++){
-            if(this.x == this.body[i].x){
+            if(this.x == this.body[i].x && this.y == this.body[i].y){
                 //TODO: SNAKE NOT DYING WHEN HEAD TOUCHES BODY >:(
-                //this.die();
+                this.die();
             }
         }
     }
