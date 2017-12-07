@@ -1,157 +1,181 @@
-/**
- * Created by adityapokharel on 27/02/17.
- */
-
 function Grid(size){
-    this.SIZE = size;
-    var i, j;
-    this.cell = new Array(size);
+    this.size = size;
+    var x, y;
+    this.grid = new Array(size); // the final grid.
     var current;
 
-
-
-    for(i = 0; i < this.SIZE; i++){
-        this.cell[i] = new Array(this.SIZE);
-        for(j = 0; j < this.SIZE; j++){
-            this.cell[i][j] = new Cell(i, j, false);
+    // Initialision --------------------------
+    for(y = 0;y < this.size; y++){
+        this.grid[y] = new Array(size);
+        for(x = 0; x < this.size; x++){
+            this.grid[y][x] = new Cell(x, y, false);
         }
     }
-
-    current = this.cell[0][0];
+    current = this.grid[0][0];
     current.visit();
+    // End init ------------------------------
 
-    this.goDown = function() {
-        if((current.getY()+1 < this.SIZE) && !(this.cell[current.getX()][current.getY()+1].isVisited())){
-            //this.cell[current.getX()][current.getY()].sides = [true, false, true, true];
-            current = this.cell[current.getX()][current.getY()+1];
+    /**
+     * Makes the "current" position move down one unit in the grid.
+     * @returns: None
+     */
+    this.goDown = function(){
+        if (current.getY() < this.size-1){
+            current.sides[3] = false;
+            current = this.grid[current.getY() + 1][current.getX()];
+            current.sides[2] = false;
             current.visit();
-            this.cell[current.getX()][current.getY()].sides[2] = false;
-            //this.cell[current.getX()][current.getY()].cameFrom = "up";
-        }
-        else{
-            return -1;
         }
     };
 
-    this.goUp = function() {
-        if((current.getY()-1 >= 0) && !(this.cell[current.getX()][current.getY()-1].isVisited())){
-            this.cell[current.getX()][current.getY()].sides[2] = false;
-
-            current = this.cell[current.getX()][current.getY()-1];
+    /**
+     * Makes the "current" position move up one unit in the grid.
+     * @returns: None
+     */
+    this.goUp = function(){
+        if (current.getY() > 0){
+            current.sides[2] = false;
+            current = this.grid[current.getY() - 1][current.getX()];
+            current.sides[3] = false;
             current.visit();
-            this.cell[current.getX()][current.getY()].sides[3] = false;
-            //this.cell[current.getX()][current.getY()].cameFrom = "down";
-        }
-        else{
-            return -1;
         }
     };
 
-    this.goLeft = function() {
-        if((current.getX() - 1 >= 0)  && !(this.cell[current.getX()-1][current.getY()].isVisited())){
-            this.cell[current.getX()][current.getY()].sides[0] = false;
-
-            current = this.cell[current.getX() -1][current.getY()];
-            current.visit();
-            this.cell[current.getX()][current.getY()].sides[1] = false;
-            //this.cell[current.getX()][current.getY()].cameFrom = "right";
-        }
-        else{
-            return -1;
-        }
-    };
-
+    /**
+     *  Makes the "current" position move right one unit in the grid.
+     *  @returns: None
+     */
     this.goRight = function(){
-        if((current.getX() + 1 < this.SIZE) && !(this.cell[current.getX()+1][current.getY()].isVisited())){
-            current = this.cell[current.getX() +1 ][current.getY()];
+        if (current.getX() < this.size-1){
+            current.sides[1] = false;
+            current = this.grid[current.getY()][current.getX() + 1];
+            current.sides[0] = false;
             current.visit();
-            //this.cell[current.getX()][current.getY()].setCameFrom("left");
-            this.cell[current.getX()][current.getY()].sides[0] = false;
-            //this.cell[current.getX()][current.getY()].cameFrom = "left";
-
-        }
-        else{
-            return -1;
         }
     };
 
+    /**
+     * Makes the "current" position move left one unit in the grid.
+     * @returns: None
+     */
+    this.goLeft = function(){
+        if (current.getX() > 0){
+            current.sides[0] = false;
+            current = this.grid[current.getY()][current.getX() - 1];
+            current.sides[1] = false;
+            current.visit();
+        }
+    };
+
+    /**
+     * Displays the grid with visited cells marked dark grey, current cell marked green and unvisited cells marked white.
+     * @returns: None
+     */
     this.display = function(){
-        for(i = 0; i < this.SIZE; i++){
-            for(j = 0; j < this.SIZE; j++){
+        for(y = 0; y < this.size; y++){
+            for(x = 0; x < this.size; x++){
 
-
-                if(this.cell[i][j].isVisited()){
+                // Colour the visited cell dark grey
+                if(this.grid[y][x].isVisited()){
                     noStroke();
                     fill(100);
-                    rect(i*10, j*10, 10, 10);
+                    rect(x*10, y*10, 10, 10);
+                    // continue;
                 }
-                if(i == current.x && j == current.y){
+
+                // Colour the current cell green
+                if(x === current.getX() && y === current.getY()){
                     fill(129, 206, 15);
-                    rect(i*10, j*10, 10, 10);
+                    rect(x*10, y*10, 10, 10);
+                    continue;
                 }
 
                 stroke(255);
-                if(this.cell[i][j].sides[0]){
-                    line((i*10), (j*10), i*10, (j*10)+10); //left
-                }
-                if(this.cell[i][j].sides[1]){
-                    line((i*10)+10, (j*10), (i*10)+10, (j*10)+10); //right
-                }
-                if(this.cell[i][j].sides[2]){
-                    line(i*10, j*10, (i*10)+10, j*10); //top
-                }
-                if(this.cell[i][j].sides[3]){
-                    line((i*10), (j*10)+10, (i*10)+10, (j*10)+10); //bottom
+                sides = this.grid[y][x].getSides(); // [left, right, top, bottom]
+
+                //Left stroke
+                if(sides[0]){
+                    line(x*10, y*10, x*10, y*10 + 10);
                 }
 
+                //right stroke
+                if(sides[1]){
+                    line(x*10 + 10, y*10, x*10 + 10, y*10 + 10);
+                }
+
+                //top stroke
+                if(sides[2]){
+                    line(x*10, y*10, x*10 + 10, y*10);
+                }
+
+                //bottom stroke
+                if(sides[3]){
+                    line(x*10, y*10 + 10, x*10 + 10,  y*10 + 10);
+                }
             }
         }
     };
 
+    /**
+     * returns the current position in the grid as a list of two elements i.e.: [xValue, yValue]
+     * @returns : {array} Current position in the format: [xValue, yValue]
+     */
     this.getXY = function(){
-        return [current.x, current.y];
+        return [current.getX(), current.getY()];
     };
 
-    this.setXY = function(input_xy_coordinates){
-        if((input_xy_coordinates[0] > 0) && (input_xy_coordinates[1] > 0) ){
-            current = this.cell[input_xy_coordinates[0]][input_xy_coordinates[1]];
+    /**
+     * Set the current position to the passed paramater.
+     * @param {array} xyCoordinates in the format: [xValue, yValue]
+     * @returns None
+     */
+    this.setXY = function(xyCoordinates){
+        var xIsWithinBounds = xyCoordinates[0] >= 0 && xyCoordinates[0] < this.size;
+        var yIsWithinBounds = xyCoordinates[1] >= 0 && xyCoordinates[1] < this.size;
+        if(xIsWithinBounds && yIsWithinBounds){
+            var xValue = xyCoordinates[0];
+            var yValue = xyCoordinates[1];
+            current = this.grid[yValue][xValue];
         }
     };
 
-    //checks if the neighboring cells are visited
-    //return: true = one of the neighbors isn't visited.
-    this.checkNeighbors = function(){
-        var neighbors = []; //top right bottom left
-
-        if((current.getY() > 0) && (this.cell[current.getX()][current.getY() - 1].isVisited() === false)){ //top
-            return true;
+    /**
+     * Checks whether the upper neighbor to the current cell is visited.
+     * @returns {boolean} true if it is visited, false if not.
+     */
+    this.upNotVisited = function(){
+        if(current.getY() > 0) {
+            return !this.grid[current.getY() - 1][current.getX()].isVisited();
         }
-        else if((current.getX() + 1 < this.SIZE) && (this.cell[current.getX() + 1][current.getY()].isVisited() === false)){ //right
-            return true;
-        }
-        else if((current.getY() + 1 < this.SIZE) && (this.cell[current.getX()][current.getY() + 1].isVisited() === false)){ //bottom
-            return true;
-        }
-        else if((current.getX() > 0) && (this.cell[current.getX() - 1][current.getY()].isVisited() === false)){ //left
-            return true;
-        }
-        else{
-            return false;
-        }
-
     };
 
-    this.topVisited = function(){
-        return (this.cell[current.getX()][current.getY()-1].isVisited());
-    };
-    this.bottomVisited = function(){
-        return this.cell[current.getX()][current.getY()+1].isVisited();
-    };
-    this.leftVisited = function(){
-        return this.cell[current.getX()-1][current.getY()].isVisited();
-    };
-    this.rightVisited = function(){
-        return this.cell[current.getX()+1][current.getY()].isVisited();
+    /**
+     *  Checks whether the lower neighbor to the current cell is visited.
+     * @returns {boolean} true if it is visited, false if not.
+     */
+    this.downNotVisited = function(){
+        if(current.getY() < this.size - 1){
+            return !this.grid[current.getY() + 1][current.getX()].isVisited();
+        }
     };
 
+    /**
+     * Checks whether the left neighbor to the current cell is visited.
+     * @returns {boolean} true if it is visited, false if not.
+     */
+    this.leftNotVisited = function(){
+        if(current.getX() > 0){
+            return !this.grid[current.getY()][current.getX() - 1].isVisited();
+        }
+    };
+
+    /**
+     * Checks whether the right neighbor to the current cell is visited.
+     * @returns {boolean} true if it is visited, false if not.
+     */
+    this.rightNotVisited = function(){
+        if(current.getX() < this.size - 1){
+            return !this.grid[current.getY()][current.getX() + 1].isVisited();
+        }
+    };
 }

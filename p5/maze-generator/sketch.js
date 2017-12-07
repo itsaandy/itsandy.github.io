@@ -1,74 +1,89 @@
 /**
- * Created by adityapokharel on 27/02/17.
+ * Created by Aitya Pokharel on DD/MM/YY.
  */
-var columns, rows;
-var grid;
+
+var maze;
 var stack = [];
+var rows, columns;
 
 function setup(){
     createCanvas(200, 200);
-    grid = new Grid(20);
+    maze = new Grid(20);
     background(220);
-    grid.display();
 }
 
 function draw(){
-    grid.display();
-    stack.push(grid.getXY());
+    // console.log(stack.length);
 
-    //console.log(stack.length);
+    maze.display();
 
+    if(stack[stack.length -1] !== maze.getXY()) {
+        stack.push(maze.getXY()); // Push the current position to the stack.
+    }
     num = Math.floor(Math.random() * 4);
 
-    if(grid.checkNeighbors()){
-        if(num === 0){
-            //console.log(grid.getXY());
-            grid.goUp();
+    // Just a bit of housekeeping --
+    var upNotVisited = maze.upNotVisited();
+    var downNotvisited = maze.downNotVisited();
+    var leftNotVisited = maze.leftNotVisited();
+    var rightNotVisited = maze.rightNotVisited();
+    // -----------------------------
+
+    // If none of the neighbors are visited, move to any of the unvisited neighbors randomly.
+    if(upNotVisited || downNotvisited || leftNotVisited || rightNotVisited) {
+        if (num === 0) {
+            if (upNotVisited) {
+                maze.goUp();
+            }
         }
-        else if(num === 1){
-            //console.log(grid.getXY());
-            grid.goLeft();
+        if (num === 1) {
+            if (downNotvisited) {
+                maze.goDown();
+            }
         }
-        else if(num === 2){
-            //console.log(grid.getXY());
-            grid.goRight();
+        if (num === 2) {
+            if (leftNotVisited) {
+                maze.goLeft();
+            }
         }
-        else if(num === 3){
-            //console.log(grid.getXY());
-            grid.goDown();
+        if (num === 3) {
+            if (rightNotVisited) {
+                maze.goRight();
+            }
         }
-    }
-    else{
-        stack.pop();
-        var temp = stack.pop();
-        grid.setXY(temp);
     }
 
-    //When stack is empty
-    if(stack.length  < 1){
-        //console.log(stack.length);
-        grid.display();
+    // If all the neighbors are visited, then pop the stack and move to the previous position.
+    else {
+        stack.pop();
+        var temp = stack.pop();
+        maze.setXY(temp);
+    }
+
+    // End case -- terminate if stack is empty.
+    if(stack.length < 1){
+        maze.display();
         noLoop();
         console.log("END");
     }
 
 
 
-
 }
 
+// Triggered when any keys are pressed.
 function keyPressed(){
     if(keyCode === UP_ARROW){
-        grid.goUp();
+        maze.goUp();
+    }
+    else if(keyCode === DOWN_ARROW) {
+        maze.goDown();
     }
     else if(keyCode === LEFT_ARROW){
-        grid.goLeft();
+        maze.goLeft();
     }
     else if(keyCode === RIGHT_ARROW){
-        grid.goRight();
+        maze.goRight();
     }
-    else if(keyCode === DOWN_ARROW){
-        grid.goDown();
-    }
-    grid.display();
+
 }
