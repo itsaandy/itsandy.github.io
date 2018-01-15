@@ -8,7 +8,7 @@ function TailSquare(){
 
     //Displays the snake.
     this.display = function(){
-        fill("#E0E0E0");
+        fill("#F2F2F2");
         rect(this.x, this.y, SQUARE_SIZE, SQUARE_SIZE);
     }
 
@@ -30,33 +30,33 @@ function Snake(){
     this.body_length = 0;
 
     this.show_head = function(){
-        fill("#E9E9E9");
+        fill("#F2F2F2");
         rect(this.x, this.y, SQUARE_SIZE, SQUARE_SIZE);
     }
 
     this.display = function(){
-        //TODO: display the tails.
 
+        // First show the head of the snake
         this.show_head();
 
+        // Used in order for the body of the snake to follow the head.
         var tempx = this.x;
         var tempy = this.y;
 
+        // Changing the current x and y to the new x and y
         this.x += this.x_speed;
         this.y += this.y_speed;
 
+        // Setting the snake's body to the head.
         if(this.length > 1){
-            this.body[0].display();
             this.body[0].set_xy(tempx, tempy);
         }
         
-        for(var i = this.body_length - 1; i > 0; i--){
+        // Displaying the rest of the body.
+        for(var i = this.body_length-1; i > 0; i--){
             this.body[i].display();
             this.body[i].set_xy(this.body[i-1].x, this.body[i-1].y);
         }
-
-        // this.x += this.x_speed;
-        // this.y += this.y_speed;
         
     }
     
@@ -69,7 +69,6 @@ function Snake(){
     this.touched_body = function(){
         for(var i = 2; i < this.body_length; i++){
             if(this.x == this.body[i].x && this.y == this.body[i].y){
-                //TODO: SNAKE NOT DYING WHEN HEAD TOUCHES BODY >:(
                 this.die();
             }
         }

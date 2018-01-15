@@ -5,7 +5,7 @@ var food;
 
 function setup(){
     createCanvas(CANVAS_SIZE, CANVAS_SIZE);
-    background("#212121");
+    background("#264454");
 
     snake = new Snake();
     food = new Food(CANVAS_SIZE);
@@ -26,7 +26,7 @@ function eaten(){
 
 
 function draw(){
-    background("#212121");
+    background("#264454");
     snake.display();
     food.display();
 
@@ -85,4 +85,5 @@ function keyPressed(){
         snake.move_left();
     else if(keyCode === RIGHT_ARROW)
         snake.move_right();
+
 }

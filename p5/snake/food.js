@@ -6,7 +6,7 @@ var Food = function(canvas_size){
 
     //displays the food in the x and y coordinates calculated above.
     this.display = function(){
-        fill("#FF8A80");
+        fill("#F28582");
         rect(this.x, this.y, 20, 20);
     }
 
