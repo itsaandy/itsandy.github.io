@@ -1,39 +1,15 @@
-body {
-
-    font-family: "Open Sans", sans-serif;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 30px;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 80px;
-
-    border: solid #BEC3C7 20px;
+img {
+    width: 30%;
+    float: left;
+    margin: 1.66%;
 }
 
-h1 {
-
-}
-
-.article-top {
-    border-left: solid #BEC3C7 10px;
-    padding-left: 30px;
-    margin-bottom: 20px;
-}
-
-.article-body {
-    margin-bottom: 20px;
-}
-
-.date {
-    font-weight: lighter;
-    color: 	#96A9B7;
-    margin-top: 30px;
-}
-
-hr {
-    border: none;
-    height: 1px;
-    /* Set the hr color */
-    background-color: #DDD; /* Modern Browsers */
+p {
+    font-family: "raleway";
+    font-weight: 800;
+    font-size: 30px;
+    margin-left: 1.66%;
+    border-bottom: 2px solid #F1F1F1;
+    padding-bottom: 20px;
+    width: 30%
 }
