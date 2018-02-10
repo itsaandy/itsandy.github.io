@@ -1,0 +1,110 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', 'Avenir';
+    background: #424242;
+}
+
+.square {
+    width: 30%;
+    background: blue;
+    padding-bottom: 30%;
+    float: left;
+    margin: 1.66%;
+    border-radius: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#container {
+    max-width: 600px;
+    margin: 0 auto;
+
+}
+
+#title-area {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    /*padding-bottom: 5px;*/
+    padding-top: 5px;
+    color: #FFFFFF;
+    /*letter-spacing: 2px*/
+}
+
+#around-title {
+    background-color: #4F84B3;
+}
+
+#nav-background {
+    /* white */
+    background-color: #FFFFFF;
+}
+
+#nav-area {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #4F84B3;
+}
+
+#status {
+
+    color: indianred;
+    display: inline-block;
+    padding-left: 25%;
+    margin: auto;
+    text-align: center;
+}
+
+#difficulty,
+#difficulty-easy,
+#difficulty-hard {
+    float: right;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: hand;
+}
+
+#difficulty {
+    margin: 0px;
+    padding: 0px;
+}
+
+#difficulty-easy {
+    margin-right: 7%;
+}
+
+#restart {
+    margin-left: 2%;
+    padding-left: 3px;
+    padding-right: 3px;
+    cursor: hand;
+
+}
+
+#restart:hover,
+#difficulty-easy:hover,
+#difficulty-hard:hover {
+    background-color: #4F84B3;
+    color: #FFFFFF;
+}
+
+.shake {
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.2s;
+    /* When the animation is finished, start again */
+    animation-iteration-count:1;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
