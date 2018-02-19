@@ -15,7 +15,11 @@
     Classic snake game I made during a long flight 👾
     
 5. [Todo List App](https://adityapokharel.github.io/p5/todoListProject/)
-    Todo list app I made for the Web Dev Bootcamp (hover to the left hand side of list to delete elements.)
+    Todo list app I made for the Web Dev Bootcamp 
+    
+    -hover to the left hand side of list to delete elements.
+    
+    -click on each element on the list to cross them out.
     
 6, [Colour Game](https://adityapokharel.github.io/p5/ColorGame/)
     A colour guessing game I made for the Web Dev Bootcamp
