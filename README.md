@@ -12,7 +12,7 @@
     A South Park game made with Scratch (REQUIRES FLASH SUPPORT)   
 
 4. [Snake game](https://adityapokharel.github.io/p5/snake/)
-    Classic snake game I made during a long flight 👾 (few bugs)
+    Classic snake game I made during a long flight 👾
     
 5. [Todo List App](https://adityapokharel.github.io/p5/todoListProject/)
     Todo list app I made for the Web Dev Bootcamp 
