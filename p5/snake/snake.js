@@ -10,7 +10,7 @@ function TailSquare(){
     this.display = function(){
         fill("#F2F2F2");
         rect(this.x, this.y, SQUARE_SIZE, SQUARE_SIZE);
-    };
+    }
 
     //for easier setting of x and y coordinates.
     this.set_xy = function(x, y){
@@ -30,9 +30,9 @@ function Snake(){
     this.body_length = 0;
 
     this.show_head = function(){
-        fill("#00FF00"); // TODO: Change this back to #F2F2F2
+        fill("#F2F2F2");
         rect(this.x, this.y, SQUARE_SIZE, SQUARE_SIZE);
-    };
+    }
 
     this.display = function(){
 
@@ -53,18 +53,18 @@ function Snake(){
         }
         
         // Displaying the rest of the body.
-        for(var i = this.body.length - 1; i > 0; i--){
+        for(var i = this.body_length-1; i > 0; i--){
             this.body[i].display();
             this.body[i].set_xy(this.body[i-1].x, this.body[i-1].y);
         }
         
-    };
+    }
     
     this.die = function(){
         console.log("DIED!!!!!!!");
         this.length = 1;
         this.body_length = 0;
-    };
+    }
 
     this.touched_body = function(){
         for(var i = 2; i < this.body_length; i++){
@@ -72,7 +72,7 @@ function Snake(){
                 this.die();
             }
         }
-    };
+    }
     
 
     //If the snake crosses any of the edges, it will be put back to the edge of the screen.
@@ -100,25 +100,25 @@ function Snake(){
             return true;
         }
         return false; //Doesn't touch any edge.
-    };
+    }
     
     //moves the snake up
     this.move_up = function(){
         this.x_speed = 0;
         this.y_speed = -1 * SPEED;
-    };
+    }
 
     //moves the snake right
     this.move_right = function(){
         this.x_speed = SPEED;
         this.y_speed = 0;
-    };
+    }
 
     //moves the snake down
     this.move_down = function(){
         this.x_speed = 0;
         this.y_speed = SPEED;
-    };
+    }
 
     //moves the snake left
     this.move_left = function(){
