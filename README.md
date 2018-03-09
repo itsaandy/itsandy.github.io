@@ -21,7 +21,7 @@
     
     -click on each element on the list to cross them out.
     
-6, [Colour Game](https://adityapokharel.github.io/p5/ColorGame/)
+6. [Colour Game](https://adityapokharel.github.io/p5/ColorGame/)
     A colour guessing game I made for the Web Dev Bootcamp
     
 7. [Doggy Blog App](https://doggyblog.herokuapp.com/blogs)
