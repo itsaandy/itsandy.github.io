@@ -26,3 +26,4 @@
     
 7. [Doggy Blog App](https://doggyblog.herokuapp.com/blogs)
     Created using Node, Mongo, and Express then deployed to Heroku.
+    Allows adding, deleting and editing posts.
